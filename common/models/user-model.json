@@ -1,5 +1,5 @@
 {
-  "name": "UserModel",
+  "name": "User",
   "plural": "user",
   "base": "PersistedModel",
   "idInjection": false,
@@ -26,14 +26,15 @@
   },
   "validations": [],
   "relations": {
-    "groupModels": {
+    "groups": {
       "type": "hasMany",
-      "model": "GroupModel",
-      "foreignKey": "",
+      "model": "Group",
+      "foreignKey": "userId",
       "options": {
-        "nestRemoting": true
+        "nestRemoting": false
       },
-      "through": "UserGroupModel"
+      "through": "UserGroup",
+      "keyThrough": "groupId"
     }
   },
   "acls": [],

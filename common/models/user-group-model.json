@@ -1,5 +1,5 @@
 {
-  "name": "UserGroupModel",
+  "name": "UserGroup",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -20,14 +20,14 @@
   },
   "validations": [],
   "relations": {
-    "groupModel": {
+    "group": {
       "type": "belongsTo",
-      "model": "GroupModel",
+      "model": "Group",
       "foreignKey": "groupId"
     },
-    "userModel": {
+    "user": {
       "type": "belongsTo",
-      "model": "UserModel",
+      "model": "User",
       "foreignKey": "userId"
     }
   },
