@@ -20,5 +20,9 @@
   "GroupModel": {
     "dataSource": "mysqlds",
     "public": true
+  },
+  "UserGroupModel": {
+    "dataSource": "mysqlds",
+    "public": false
   }
 }

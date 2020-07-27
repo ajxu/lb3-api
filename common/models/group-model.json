@@ -2,13 +2,14 @@
   "name": "GroupModel",
   "plural": "group",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
     "groupId": {
       "type": "number",
+      "id": true,
       "required": true
     },
     "groupName": {
