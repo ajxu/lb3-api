@@ -4,7 +4,10 @@
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
-    "validateUpsert": true
+    "validateUpsert": true,
+    "mysql": {
+      "table": "users"
+    }
   },
   "properties": {
     "userId": {
