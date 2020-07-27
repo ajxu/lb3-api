@@ -1,1 +1,12 @@
-{}
+{
+  "mysqlds": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "url": "",
+    "database": "testdb",
+    "password": "password",
+    "name": "mysqlds",
+    "user": "root",
+    "connector": "mysql"
+  }
+}
