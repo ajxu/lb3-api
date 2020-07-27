@@ -12,5 +12,13 @@
       "../common/mixins",
       "./mixins"
     ]
+  },
+  "UserModel": {
+    "dataSource": "mysqlds",
+    "public": true
+  },
+  "GroupModel": {
+    "dataSource": "mysqlds",
+    "public": true
   }
 }
