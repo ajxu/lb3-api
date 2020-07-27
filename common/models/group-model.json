@@ -17,7 +17,17 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "userModels": {
+      "type": "hasMany",
+      "model": "UserModel",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      },
+      "through": "UserGroupModel"
+    }
+  },
   "acls": [],
   "methods": {}
 }

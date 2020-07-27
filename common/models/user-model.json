@@ -22,7 +22,17 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "groupModels": {
+      "type": "hasMany",
+      "model": "GroupModel",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      },
+      "through": "UserGroupModel"
+    }
+  },
   "acls": [],
   "methods": {}
 }

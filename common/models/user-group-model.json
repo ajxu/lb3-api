@@ -16,7 +16,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "groupModel": {
+      "type": "belongsTo",
+      "model": "GroupModel",
+      "foreignKey": "groupId"
+    },
+    "userModel": {
+      "type": "belongsTo",
+      "model": "UserModel",
+      "foreignKey": "userId"
+    }
+  },
   "acls": [],
   "methods": {}
 }
