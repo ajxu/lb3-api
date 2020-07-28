@@ -100,9 +100,7 @@ module.exports = function(User) {
 
     /* 
      * Upload photo function for /user/upload-photo endpoint 
-     * Accepts userId and photoBase64 in request
-     * According to instructions in user stories Content-Type: application/json
-     * If need to test with real image file upload, this method can be converted to multi-part/form
+     * Accepts userId and photoBase64 in request as JSON
      */
 
     User.uploadphoto = function(req, callback){
@@ -167,5 +165,41 @@ module.exports = function(User) {
         },
         description: "Upload user photo - Refer to User stories 2."
     });
+
+
+    /* 
+     * Suspend user for /user/suspend endpoint 
+     * Accepts userId in request as JSON
+     */
+
+    User.suspend = function(req, callback){
+        /* Get parsed params */
+        var userId = req.body.userId;
+
+        /* Update user, no validation to check if user exists */
+        User.updateAll({userId: userId}, {isSuspended: true})
+        .then(count => {
+            callback(null, count);
+        })
+        .catch(err => {
+            callback(err);
+        });
+    };
+
+    User.remoteMethod('suspend', {
+        accepts: [
+            {arg: 'req', type: 'object', 'http': function(ctx) {return ctx.req;}}, 
+        ],
+        returns: [
+            { arg: 'res', type: 'object', 'http': { source: 'res' } }
+        ],
+        http: {
+            verb: "post",
+            path: "/suspend",
+            status: 200
+        },
+        description: "Suspend user - Refer to User stories 3."
+    });
+
 
 };
