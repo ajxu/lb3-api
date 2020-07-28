@@ -6,9 +6,16 @@
 'use strict';
 
 const loopback = require('loopback');
+var bodyParser = require('body-parser');
+var multer = require('multer');
 const boot = require('loopback-boot');
 
 const app = module.exports = loopback();
+
+// Parsing request
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(multer({dest:'./uploads/'}).any()); // for parsing multipart/form-data
 
 app.start = function() {
   // start the web server

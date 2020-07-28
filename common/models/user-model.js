@@ -2,15 +2,18 @@
 
 module.exports = function(User) {
 
-    var app = require('../../server/server');
-
     /* 
      * Register function for /user/register endpoint 
      * Accepts groupId and array of users in request
      */
-    User.register = function(groupId, users, callback) {
+    User.register = function(req, callback) {
+
+        /* Get parsed params */
+        var groupId = req.body.groupId;
+        var users = req.body.users;
+        
         /* Import Group */
-        var Group = app.models.Group;
+        var Group = User.app.models.Group;
 
         /* Check if group exist */
         Group.find({where: {groupId: groupId}})
@@ -48,12 +51,12 @@ module.exports = function(User) {
                         Promise.all(upDateUsers).then((msgs) => {
                             console.log(msgs);
                             console.log('Completed adding group to users');
-                            callback(null, users);
+                            callback(null);
                         });
                     }
                     else {
                         //console.log('Ended without update');
-                        callback(null, users);
+                        callback(null);
                     }
                     
                 })
@@ -75,14 +78,8 @@ module.exports = function(User) {
     /* Custom remoteMethod for route registration of /user/register endpoint */
     User.remoteMethod('register', {
         accepts: [
-            {arg:'groupId', type:'number'},
-            {arg:'users', type:'array'}
+            { arg: 'req', type: 'object', http: function(ctx) { return ctx.req; } }
         ],
-        // HTTP Status 204 (No Content)
-        // returns: [
-        //     {arg:'groupId', type:'number'},
-        //     {arg:'users', type:'array'}
-        // ],
         http: {
             verb: "post",
             path: "/register",
