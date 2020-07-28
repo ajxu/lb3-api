@@ -16,7 +16,7 @@
       "required": true
     },
     "photoBase64": {
-      "type": "string"
+      "type": "text"
     },
     "isSuspended": {
       "type": "boolean",
