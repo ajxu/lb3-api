@@ -266,7 +266,43 @@ module.exports = function(User) {
             verb: "post",
             path: "/retrievefornotifications",
             status: 200
-        }
+        },
+        description: "Retrieve a list of users who can receive a given notification - Refer to User stories 4."
     });
+
+    /* 
+     * This code block below is to turn on/off individual auto-generated api routes 
+     */
+
+    /* Find all instances of the model matched by filter from the data source. */
+    // User.disableRemoteMethodByName('find');
+
+    /* Create a new instance of the model and persist it into the data source. */
+    // UserModel.disableRemoteMethodByName('create');
+
+    User.disableRemoteMethodByName('findById');
+    User.disableRemoteMethodByName('findOne');
+    User.disableRemoteMethodByName('findOrCreate');
+    User.disableRemoteMethodByName('exists');
+    User.disableRemoteMethodByName('createChangeStream');
+    User.disableRemoteMethodByName('upsert');
+    User.disableRemoteMethodByName('updateAll');
+    User.disableRemoteMethodByName('upsertWithWhere');
+    User.disableRemoteMethodByName('replaceOrCreate');
+    User.disableRemoteMethodByName('replaceById');
+    User.disableRemoteMethodByName('destroyById');
+    User.disableRemoteMethodByName('destroyAll');
+    User.disableRemoteMethodByName('count');
+    User.disableRemoteMethodByName('prototype.updateAttributes');
+    User.disableRemoteMethodByName('prototype.__findById__groups');
+    User.disableRemoteMethodByName('prototype.__destroyById__groups');
+    User.disableRemoteMethodByName('prototype.__updateById__groups');
+    //User.disableRemoteMethodByName('prototype.__get__groups');
+    //User.disableRemoteMethodByName('prototype.__create__groups');
+    User.disableRemoteMethodByName('prototype.__delete__groups');
+    User.disableRemoteMethodByName('prototype.__count__groups');
+    User.disableRemoteMethodByName('prototype.__exists__groups');
+    User.disableRemoteMethodByName('prototype.__link__groups');
+    User.disableRemoteMethodByName('prototype.__unlink__groups');
 
 };
