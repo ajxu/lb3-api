@@ -201,5 +201,72 @@ module.exports = function(User) {
         description: "Suspend user - Refer to User stories 3."
     });
 
+    /* 
+    * Retrieve for Notifications 
+    */
+
+   User.retrievefornotifications = function(req, callback){
+
+        /* Get parsed params */
+        var groupId = req.body.group
+        var notification = req.body.notification
+
+        /* Get Group Model */
+        var Group = User.app.models.Group;
+
+        /* Find group based on groupId in request */
+        Group.find({
+            include: {
+                relation: 'users'
+            },
+            where: {
+                groupId: groupId
+            }
+        })
+        .then(group => {
+            /* Only include NOT suspended users */
+            group[0].users({
+                where: { isSuspended: false },
+                /* Omit unnecessary fields, only email (userId) is required.*/
+                fields: {userId: true, photoBase64: false, isSuspended: false}
+            }, function(err, users){
+                if(err) {
+                    callback(err);
+                }
+                else {
+                    /* Match emails found in notifications */
+                    const regex = /[^@\r\n\t\f\v ]+[a-z0-9@]@[a-z0-9\.]+/img;
+                    let extraEmails = (notification.match(regex) || []);
+
+                    /* Convert user objects into an array */
+                    let userEmails = users.map(user => {
+                        return user['userId'];
+                    });
+
+                    /* Concatenate all recipients to be used for notification */
+                    let allRecipients = userEmails.concat(extraEmails);
+                    console.log(allRecipients);
+                    callback(null, allRecipients)
+                }
+            })
+        })
+        .catch(err => {
+            callback(err);
+        });
+    }
+
+    User.remoteMethod('retrievefornotifications', {
+        accepts: [
+            {arg: 'req', type: 'object', 'http': function(ctx) {return ctx.req;}}, 
+        ],
+        returns: [
+            { arg: 'recipients', type: 'object', 'http': { source: 'res' } }
+        ],
+        http: {
+            verb: "post",
+            path: "/retrievefornotifications",
+            status: 200
+        }
+    });
 
 };
