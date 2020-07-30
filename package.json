@@ -8,7 +8,13 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
-    "posttest": "npm run lint"
+    "test": "jest --verbose --forceExit --runInBand --detectOpenHandles"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -25,8 +31,12 @@
     "strong-error-handler": "^3.0.0"
   },
   "devDependencies": {
+    "env-cmd": "^8.0.2",
     "eslint": "^3.17.1",
-    "eslint-config-loopback": "^8.0.0"
+    "eslint-config-loopback": "^8.0.0",
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
   },
   "repository": {
     "type": "",

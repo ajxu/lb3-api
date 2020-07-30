@@ -302,7 +302,7 @@ module.exports = function(User) {
     User.disableRemoteMethodByName('prototype.__delete__groups');
     User.disableRemoteMethodByName('prototype.__count__groups');
     User.disableRemoteMethodByName('prototype.__exists__groups');
-    User.disableRemoteMethodByName('prototype.__link__groups');
+    //User.disableRemoteMethodByName('prototype.__link__groups');
     User.disableRemoteMethodByName('prototype.__unlink__groups');
 
 };

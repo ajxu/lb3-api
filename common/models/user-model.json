@@ -16,7 +16,10 @@
       "required": true
     },
     "photoBase64": {
-      "type": "text"
+      "type": "string",
+      "mysql": {
+        "dataType": "TEXT"
+      }
     },
     "isSuspended": {
       "type": "boolean",
