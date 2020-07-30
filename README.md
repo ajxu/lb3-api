@@ -129,7 +129,7 @@ Under Parameters next to data enter the following into Value to create a group:
 - lb3-api
   - common
     - models
-      - user-mode.js
+      - user-model.js
 
 All of the business logic for the assignment are found in this file.
 
