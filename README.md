@@ -124,6 +124,17 @@ Under Parameters next to data enter the following into Value to create a group:
 
 12. Please note, for your convenience unit test will insert sample data into the database during testing to be used with my Postman collection. If you choose not to use my collection, you may add users and groups through Explorer as shown in the Example Usage section for the testing.
 
+13. For code review, please focus on the file found in:
+
+- lb3-api
+  - common
+    - models
+      - user-mode.js
+
+All of the business logic for the assignment are found in this file.
+
+14. Loopback 3 uses a function called remoteMethod() to create custom endpoints.
+
 ### Summary
 I had initially chose to use Loopback 3 (LB3) due to good past experience with Loopback 2 (LB2), here are my considerations:
 - LB3 can quickly generate CRUD api endpoints for faster development and scaling
