@@ -66,26 +66,37 @@ nodemon .
 [nodemon] watching path(s): *.*
 [nodemon] watching extensions: js,mjs,json
 [nodemon] starting `node .`
-Swagger: skipping unknown type "text".
 Web server listening at: http://localhost:3000
 Browse your REST API at http://localhost:3000/explorer
 Model schema updated
 ```
+If you see this log in terminal, it means that your database details are configured correctly and the app has launched.
+
+### Unit Test - API Endpoint testing
+8. Unit test is done with Jest and Supertest. The test file (api-endpoint.test.js) can be found in the tests directory of the project root.
+
+9. To run the test, in the terminal at project root prompt, type:
+```
+npm test
+```
+You should then see some thing similar to the image below if all the tests had passed. The test data inserted into the database was purposefully not removed after tests for the convenience of testing in the Assignment Proper section.
+
+![alt text](https://github.com/ajxu/lb3-api/blob/master/tests/test-example.png)
 
 ### Schema Migration
-8. There is an auto-migration script that updates the model schema into the the table, this will run everytime on running project but don't worry it updates the schema and you will not lose your data. The migration script can be found in:
+10. There is an auto-migration script that updates the model schema into the the table, this will run everytime on running project but don't worry it updates the schema and you will not lose your data. The migration script can be found in:
 - lb3-api (project root folder)
   - server
     - boot
       - autoupdate.js
  
- ### Example Usage
-9.  Loopback 3 comes with Swagger UI API explorer built-in. To access it, go to:
+ ### Example Usage using Explorer (http://localhost:3000/explorer)
+11.  Loopback 3 comes with Swagger UI API explorer built-in. To access it, go to:
  ```
  http://localhost:3000/explorer/
  ```
  #### Adding users
- 10. In explorer, head to User -> POST /user endpoint and click on the endpoint name.
+12. In explorer, head to User -> POST /user endpoint and click on the endpoint name.
 Under Parameters next to data enter the following into Value to create a user:
  ```
 {
@@ -93,8 +104,6 @@ Under Parameters next to data enter the following into Value to create a user:
 }
  ```
  and click "Try it out!" button.
- 
-11. You may create afew users for testing.
 
  #### Adding groups
  10. In explorer, head to Group -> POST /group endpoint and click on the endpoint name.
@@ -106,4 +115,23 @@ Under Parameters next to data enter the following into Value to create a group:
  ```
  and click "Try it out!" button.
  
-11. You may create afew groups for testing.
+### Assignment Proper
+#### Please use Postman for testing the assignment requirements
+
+11. Here is my Postman collection for your convenience
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e1b03027bc564c911377)
+
+12. Please note, for your convenience unit test will insert sample data into the database during testing to be used with my Postman collection. If you choose not to use my collection, you may add users and groups through Explorer as shown in the Example Usage section for the testing.
+
+### Summary
+I had initially chose to use Loopback 3 (LB3) due to good past experience with Loopback 2 (LB2), here are my considerations:
+- LB3 can quickly generate CRUD api endpoints for faster development and scaling
+- LB3 comes with it's own ORM which removes mistakes in SQL queries in development.
+- LB3 can generate models to be customised and schema is almost database agnostic, it can map complex relationships (e.g. many-to-many) with just javascipt or json.
+- LB3 has connectors for SQL and NOSQL databases and can use multiple databases (datasources) in one app.
+
+At hindsight, I would however not use LB for current projects due to the following:
+- LB3 is in LTS and maintenance will end in December 2020. Currently, dependency deprecation is growing.
+- LB4 is in development and uses Typescript, as of date the master branch does not support many-to-many modeling
+- LB3 does not have an easy way to unit test custom endpoints (called remote methods)
